@@ -26,7 +26,8 @@ Route::post('/' , function ()
         'number' =>'required|min:11|max:13|regex:/^([0-9\s\-\+\(\)]*)$/',
         'email'=>'required',
         'password'=>'required|min:8|max:30',
-        'address' => 'required'
+        'address' => 'required',
+        'g-recaptcha-response' => 'recaptcha'
        ])->validated();
     User::create(
         [
@@ -48,7 +49,8 @@ Route::post('/LogIn' , function ()
     $validated_user = Validator::make(request()->all() , 
     [
         'number' => 'required|min:11|max:13|regex:/^([0-9\s\-\+\(\)]*)$/',
-        'password' => 'required|min:8|max:30'
+        'password' => 'required|min:8|max:30',
+        'g-recaptcha-response' => 'recaptcha'
     ])->validated();
 
     $user_number = User::where('number' , $validated_user['number'])->value('number');

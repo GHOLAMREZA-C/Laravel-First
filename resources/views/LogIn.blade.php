@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+	
+	 {!! htmlScriptTagJsApi() !!}	
 	<title>Login V3</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,6 +63,12 @@
 							Remember me
 						</label>
 					</div>
+					{!! htmlFormSnippet() !!}
+					@if($errors->has('g-recaptcha-response'))
+					<div>
+						 <small class="text-danger">{{ $errors->first('g-recaptcha-response') }}</small>
+					 </div>
+					@endif
 
 					<div class="container-login100-form-btn">
 						<input type="submit" >
